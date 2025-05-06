@@ -1,7 +1,7 @@
 <p align="center">
 
 <h1 align="center">
-  <img src="docs/logo.png" alt="VSLAM-LAB Logo" width="30" 
+  <img src="docs/favicon_2.ico" alt="VSLAM-LAB Logo" width="30" 
        style="vertical-align: middle; position: relative; top: -10px; margin-right: 10px;">
   <span style="font-size: 2em; font-weight: bold;">Conda Packages</span>
 </h1>
