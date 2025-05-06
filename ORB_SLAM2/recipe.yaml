@@ -1,0 +1,62 @@
+context:
+  name: orbslam2
+  version: 1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/VSLAM-LAB/ORB_SLAM2
+    rev: b1b60536d2c5cd2c19fed1e5cab454c24275eb53
+
+build:
+  number: 0
+  skip: win
+  script: build.sh
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ninja
+    - cmake
+    - make
+    - pkg-config  
+  host:
+    - libgl-devel
+    - libegl-devel
+    - libglvnd-devel
+    - libopengl-devel
+    - xorg-libxext
+    - xorg-libx11
+    - xorg-libxfixes
+    - xorg-libxrender
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libxdmcp
+    - xorg-libxau
+    - eigen >=3.4.0,<3.5.0
+    - yaml-cpp
+    - opencv >=4.10.0,<5 
+    - fontan::pangolin
+  run:
+    - eigen >=3.4.0,<3.5.0
+    - yaml-cpp
+    - opencv >=4.10.0,<5
+    - fontan::pangolin
+about:
+  license: GPL-3.0-only
+  license_file: LICENSE.txt
+  summary: ORB-SLAM2 is a real-time SLAM library for Monocular, Stereo and RGB-D cameras. 
+  homepage: https://github.com/raulmur/ORB_SLAM2
+
+extra:
+  authors:
+    - Raul Mur-Artal
+    - Juan D. Tardos
+    - J. M. M. Montiel
+    - Dorian Galvez-Lopez
+  recipe-maintainers:
+    - fontan

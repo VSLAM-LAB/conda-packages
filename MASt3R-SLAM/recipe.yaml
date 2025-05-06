@@ -1,0 +1,124 @@
+context:
+  name: mast3rslam
+  version: 1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/VSLAM-LAB/MASt3R-SLAM
+    rev: 42313ccc28769d2a1cc6367e6b4eb92060806d1f
+
+build:
+  number: 0
+  skip: win or cuda_compiler == "None" or cuda_compiler_version != "12.6"
+
+requirements:
+  build:
+    - ${{ compiler('cuda') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ninja
+    - cmake
+    - make
+    - pkg-config  
+  host:
+    - libgl-devel
+    - libegl-devel
+    - libglvnd-devel
+    - libopengl-devel
+    - xorg-libxext
+    - xorg-libx11
+    - xorg-libxfixes
+    - xorg-libxrender
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libxdmcp
+    - xorg-libxau
+    - python = 3.11
+    - cuda-version ==${{ cuda_compiler_version }}
+    - cuda-cudart-dev
+    - cuda-crt
+    - cudnn
+    - libcusparse-dev
+    - cuda-driver-dev
+    - cuda-nvcc
+    - cuda-nvrtc-dev
+    - cuda-nvtx-dev
+    - cuda-nvml-dev
+    - cuda-profiler-api
+    - cusparselt
+    - libcublas-dev
+    - libcudss-dev
+    - libcufile-dev
+    - libcufft-dev
+    - libcurand-dev
+    - libcusolver-dev
+    - setuptools
+    - pytorch-gpu
+    - torchvision
+    - pip
+    - numpy < 2
+    - librealsense
+    - evo
+    - natsort
+    - pykdtree
+    - torchcodec
+    - msgpack-python
+    - scikit-learn
+    - gradio
+    - matplotlib
+    - tqdm
+    - opencv
+    - scipy
+    - einops
+    - trimesh
+    - tensorboard
+    - pyglet
+    - huggingface_hub
+    - eigen
+    - plyfile
+    - pillow
+    - pyaml
+    - safetensors
+    - faiss
+    - fontan::lietorch
+    - fontan::pyglfw
+    - fontan::moderngl-window
+    - fontan::faiss-cpu
+    - fontan::roma
+  run:
+    - fontan::lietorch
+    - fontan::pyglfw
+    - fontan::moderngl-window
+    - fontan::faiss-cpu
+    - fontan::roma
+    - python = 3.11
+    - pytorch-gpu
+    - opencv
+    - pillow
+    - tqdm
+    - huggingface_hub
+    - einops
+    - torchvision
+    - plyfile
+    - natsort
+    - faiss
+    - matplotlib
+    - trimesh
+
+about:
+  license: CC-BY-NC-SA-4.0
+  license_file: LICENSE.md
+  summary: MASt3R-SLAM Real-Time Dense SLAM with 3D Reconstruction Priors
+  homepage: https://edexheim.github.io/mast3r-slam
+
+extra:
+  authors:
+    - Riku Murai
+    - Eric Dexheimer
+    - Andrew Davison
+  recipe-maintainers:
+    - fontan
