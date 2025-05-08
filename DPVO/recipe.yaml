@@ -1,0 +1,118 @@
+context:
+  name: dpvo
+  version: 1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/VSLAM-LAB/DPVO
+    rev: 4c220e0a51343244bac8023d32ac72040da9a6df
+
+build:
+  number: 0
+  skip: win or cuda_compiler == "None" or cuda_compiler_version != "12.6"
+
+requirements:
+  build:
+    - ${{ compiler('cuda') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ninja
+    - cmake < 4
+    - make
+    - pkg-config  
+
+  host:
+    # Python & Build Tools
+    - python = 3.11
+    - setuptools
+    - pip
+    - pybind11
+
+    # Python core + DL
+    - fontan::pangolin
+    - fontan::pypose
+    - pytorch-gpu
+    - torchvision
+    - pytorch_scatter
+    - numba
+    - numpy
+    - tqdm
+    - einops   
+    - kornia    
+    - opencv
+    - yacs
+    - eigen
+
+    # CUDA Toolkit Libraries
+    - cuda-version = ${{ cuda_compiler_version }}
+    - cuda-cudart-dev
+    - cuda-crt
+    - cudnn
+    - libcusparse-dev
+    - cuda-driver-dev
+    - cuda-nvcc
+    - cuda-nvrtc-dev
+    - cuda-nvtx
+    - cuda-nvtx-dev
+    - cuda-nvml-dev
+    - cuda-profiler-api
+    - cusparselt
+    - libcublas-dev
+    - libcudss-dev
+    - libcufile-dev
+    - libcufft-dev
+    - libcurand-dev
+    - libcusolver-dev
+    - libnvjitlink
+
+    # X11 + OpenGL
+    - libgl-devel
+    - libegl-devel
+    - libglvnd-devel
+    - libopengl-devel
+    - xorg-libxext
+    - xorg-libx11
+    - xorg-libxfixes
+    - xorg-libxrender
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libxdmcp
+    - xorg-libxau
+    - xorg-xorgproto
+    - libxkbcommon
+    - glew
+    - wayland
+
+    # Logging / Evaluation
+    - tensorboard
+    - plyfile
+    - evo
+
+  run:
+    - torchvision
+    - pytorch_scatter 
+    - opencv 
+    - evo
+    - yacs
+    - einops 
+    - numba
+    - fontan::pangolin
+    - fontan::pypose
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Deep Patch Visual Odometry/SLAM
+  homepage: https://github.com/princeton-vl/DPVO?tab=readme-ov-file
+
+extra:
+  authors:
+    - Lahav Lipson
+    - Zachary Teed
+    - Jia Deng
+  recipe-maintainers:
+    - fontan
