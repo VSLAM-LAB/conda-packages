@@ -99,12 +99,19 @@ requirements:
     - tqdm
     - trimesh
   run:
+    - einops
     - faiss
     - fontan::lietorch
-    - matplotlib
     - fontan::moderngl-window
-    - pyglfw 
     - fontan::roma
+    - huggingface_hub
+    - matplotlib
+    - natsort
+    - opencv
+    - plyfile
+    - pyglfw 
+    - torchvision
+    - tqdm
     - trimesh
 
 about:
