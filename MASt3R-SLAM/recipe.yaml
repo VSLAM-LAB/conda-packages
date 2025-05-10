@@ -8,7 +8,7 @@ package:
 
 source:
   - git: https://github.com/VSLAM-LAB/MASt3R-SLAM
-    rev: 42313ccc28769d2a1cc6367e6b4eb92060806d1f
+    rev: c6d415630d885b25d22039a780b6f531df9d85bd
 
 build:
   number: 0
@@ -20,15 +20,19 @@ requirements:
     - ${{ compiler('cxx') }}
     - ${{ compiler('c') }}
     - ${{ stdlib('c') }}
-    - ninja
+    - pkg-config  
     - cmake
     - make
-    - pkg-config  
   host:
+    - python = 3.11
+    - setuptools
+    - pip
+    # OpenGL
     - libgl-devel
     - libegl-devel
     - libglvnd-devel
     - libopengl-devel
+    # X11
     - xorg-libxext
     - xorg-libx11
     - xorg-libxfixes
@@ -37,11 +41,12 @@ requirements:
     - xorg-libsm
     - xorg-libxdmcp
     - xorg-libxau
-    - python = 3.11
+    - xorg-xorgproto
+    - libxkbcommon
+    # CUDA Build Tools
     - cuda-version ==${{ cuda_compiler_version }}
     - cuda-cudart-dev
     - cuda-crt
-    - cudnn
     - libcusparse-dev
     - cuda-driver-dev
     - cuda-nvcc
@@ -49,64 +54,57 @@ requirements:
     - cuda-nvtx-dev
     - cuda-nvml-dev
     - cuda-profiler-api
-    - cusparselt
+    # CUDA Libraries
+    - cudnn
     - libcublas-dev
     - libcudss-dev
     - libcufile-dev
     - libcufft-dev
     - libcurand-dev
     - libcusolver-dev
-    - setuptools
+    - cusparselt
+    - libnvjitlink
+    # Torch libraries
     - pytorch-gpu
     - torchvision
-    - pip
-    - numpy < 2
-    - librealsense
-    - evo
-    - natsort
-    - pykdtree
+    - fontan::lietorch
     - torchcodec
-    - msgpack-python
-    - scikit-learn
-    - gradio
-    - matplotlib
-    - tqdm
-    - opencv
-    - scipy
-    - einops
-    - trimesh
-    - tensorboard
-    - pyglet
-    - huggingface_hub
+    # Other
     - eigen
-    - plyfile
-    - pillow
-    - pyaml
-    - safetensors
+    - einops
+    - evo
     - faiss
-    - fontan::lietorch
-    - fontan::pyglfw
+    - gradio
+    - huggingface_hub
+    - librealsense
+    - matplotlib
+    - moderngl
     - fontan::moderngl-window
-    - fontan::faiss-cpu
-    - fontan::roma
-  run:
-    - fontan::lietorch
-    - fontan::pyglfw
-    - fontan::moderngl-window
-    - fontan::faiss-cpu
-    - fontan::roma
-    - python = 3.11
-    - pytorch-gpu
+    - msgpack-python
+    - natsort
+    - numpy < 2
     - opencv
     - pillow
-    - tqdm
-    - huggingface_hub
-    - einops
-    - torchvision
     - plyfile
-    - natsort
+    - pyaml
+    - pyglet
+    - pyglfw
+    - pyglm
+    - pykdtree
+    - fontan::roma
+    - safetensors
+    - scikit-learn
+    - scipy
+    - tensorboard
+    - tqdm
+    - trimesh
+  run:
     - faiss
+    - fontan::lietorch
     - matplotlib
+    - fontan::moderngl-window
+    - pyglfw 
+    - fontan::roma
     - trimesh
 
 about:
