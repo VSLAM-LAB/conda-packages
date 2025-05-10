@@ -8,7 +8,7 @@ package:
 
 source:
   - git: https://github.com/VSLAM-LAB/MASt3R-SLAM
-    rev: c6d415630d885b25d22039a780b6f531df9d85bd
+    rev: 96cc2f17225b6fa0e488a22393646e775e3fef21
 
 build:
   number: 0
