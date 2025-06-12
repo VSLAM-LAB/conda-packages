@@ -8,7 +8,7 @@ package:
 
 source:
   - git: https://github.com/VSLAM-LAB/DPVO
-    rev: 4c220e0a51343244bac8023d32ac72040da9a6df
+    rev: c35542d9a9e6746d21158728d053c1856d1cd8d7
 
 build:
   number: 0
