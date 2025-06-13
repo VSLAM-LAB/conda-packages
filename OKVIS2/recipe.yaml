@@ -1,0 +1,102 @@
+context:
+  name: okvis2
+  version: 1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/VSLAM-LAB/okvis2
+    rev: f38120a816b5202ebcedeb569c7b939e1725ca00
+
+build:
+  number: 0
+  skip: win or cuda_compiler == "None" or cuda_compiler_version != "12.6"
+  script: build.sh
+
+requirements:
+  build:
+    - ${{ compiler('cuda') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ninja
+    - cmake <4
+    - make
+    - pkg-config  
+  host:    
+    # OpenGL
+    - libgl-devel
+    - libegl-devel
+    - libglvnd-devel
+    - libopengl-devel
+    # X11
+    - xorg-libxext
+    - xorg-libx11
+    - xorg-libxfixes
+    - xorg-libxrender
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libxdmcp
+    - xorg-libxau
+    - xorg-xorgproto
+    - libxkbcommon
+    # CUDA Build Tools
+    - cuda-version ==${{ cuda_compiler_version }}
+    - cuda-cudart-dev
+    - cuda-crt
+    - libcusparse-dev
+    - cuda-driver-dev
+    - cuda-nvcc
+    - cuda-nvrtc-dev
+    - cuda-nvtx-dev
+    - cuda-nvml-dev
+    - cuda-profiler-api
+    # CUDA Libraries
+    - cudnn
+    - libcublas-dev
+    - libcudss-dev
+    - libcufile-dev
+    - libcufft-dev
+    - libcurand-dev
+    - libcusolver-dev
+    - cusparselt
+    - libnvjitlink
+
+    - glog
+    - blas
+    - lapack
+    - eigen
+    - suitesparse
+    - boost
+    - opencv
+    - libtorch
+    - librealsense
+    - openmp
+    - libgfortran =3.0.0
+  run:
+    - glog
+    - blas
+    - lapack
+    - eigen
+    - suitesparse
+    - boost
+    - opencv
+    - libtorch
+    - librealsense
+    - openmp
+    - libgfortran =3.0.0
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Open Keyframe-based Visual-Inertial SLAM.
+  homepage: https://github.com/smartroboticslab/okvis2
+
+extra:
+  authors:
+    - Stefan Leutenegger
+
+  recipe-maintainers:
+    - fontan
