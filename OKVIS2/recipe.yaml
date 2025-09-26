@@ -8,7 +8,7 @@ package:
 
 source:
   - git: https://github.com/VSLAM-LAB/okvis2
-    rev: f38120a816b5202ebcedeb569c7b939e1725ca00
+    rev: 64cc213876a55aa15858f82c29c346d54bc6a570
 
 build:
   number: 0
