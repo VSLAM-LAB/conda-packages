@@ -8,7 +8,7 @@ package:
 
 source:
   - git: https://github.com/VSLAM-LAB/DROID-SLAM
-    rev: 3b25784d4d260691737c47be199eacff57f7c989
+    rev: 1fe7023c82173bd31670c8d4468e6d8deb402ee4
 
 build:
   number: 0
@@ -70,7 +70,7 @@ requirements:
     # Torch libraries
     - pytorch-gpu
     - fontan::lietorch
-    
+    - pandas
   run:
     - python=3.11
     - pytorch-gpu
@@ -84,6 +84,7 @@ requirements:
     - huggingface_hub
     - torch-scatter
     - fontan::lietorch
+    - pandas
 
 about:
   license: BSD-3-Clause

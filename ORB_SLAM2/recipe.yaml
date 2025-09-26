@@ -8,7 +8,7 @@ package:
 
 source:
   - git: https://github.com/VSLAM-LAB/ORB_SLAM2
-    rev: b1b60536d2c5cd2c19fed1e5cab454c24275eb53
+    rev: 7f747d507ffb04fc277d9ee4e9302fb15b5b43fc
 
 build:
   number: 0

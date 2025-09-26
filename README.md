@@ -20,7 +20,7 @@ export CF_CUDA_ENABLED=True
 ```
 
 ```bash
-rattler-build build -m ../conda_build_config.yaml -c conda-forge -c fontan 
+rattler-build build -m ../conda_build_config.yaml -c https://fast.prefix.dev/conda-forge -c fontan 
 ```
 
 ```bash
