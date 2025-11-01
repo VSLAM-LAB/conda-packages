@@ -1,0 +1,72 @@
+context:
+  name: anyfeature
+  version: 1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/alejandrofontan/AnyFeature-VSLAM
+    rev: 6cf7b49edfeee96a4ee83c705020ff15e686ae76
+
+build:
+  number: 0
+  skip: win
+  script: build.sh
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ninja
+    - cmake
+    - make
+    - pkg-config
+  host:
+    - libgl-devel
+    - libegl-devel
+    - libglvnd-devel
+    - libopengl-devel
+    - xorg-libxext
+    - xorg-libx11
+    - xorg-libxfixes
+    - xorg-libxrender
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libxdmcp
+    - xorg-libxau
+    - eigen >=3.4.0,<3.5.0
+    - yaml-cpp
+    - fontan::opencv
+    - fontan::pangolin
+    - fontan::brisk
+    - fontan::akaze
+    - fontan::siftgpu
+    - fontan::g2o
+  run:
+    - eigen >=3.4.0,<3.5.0
+    - yaml-cpp
+    - fontan::opencv
+    - fontan::pangolin
+    - fontan::brisk
+    - fontan::akaze
+    - fontan::siftgpu
+    - fontan::g2o
+    - huggingface_hub
+    - pandas
+
+about:
+  license: GPL-3.0-only
+  license_file: License-gpl.txt
+  summary: Any-Feature V-SLAM is an automated visual SLAM library for Monocular cameras capable of switching to a chosen type of feature effortlessly and without manual intervention.
+  homepage: https://github.com/alejandrofontan/AnyFeature-VSLAM
+
+extra:
+  authors:
+    - Alejandro Fontan 
+    - Javier Civera
+    - Michael Milford
+  recipe-maintainers:
+    - fontan
