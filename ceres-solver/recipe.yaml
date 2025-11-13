@@ -1,10 +1,3 @@
-#{% set version = "2.2.0" %}
-#{% set processor = "cpu" if (cuda_compiler_version or "None") == "None" else "gpu" %}
-
-# Prioritize gpu build if cudatoolkit can be installed (through __cuda virtual package)
-#{% set build = 8 %}
-#{% set build = build + 100 if processor == "gpu" else build %}
-
 context:
   name: ceres-solver
   version: 1.0
@@ -12,10 +5,6 @@ context:
 package:
   name: ${{ name|lower }}
   version: ${{ version }}
-
-#source:
-#  url: http://ceres-solver.org/ceres-solver-{{ version }}.tar.gz
-#  sha256: 0c70ed3a1a2d6ba47c06c7e8b3b040880bc474db
 
 source:
   - git: https://github.com/ceres-solver/ceres-solver
@@ -26,16 +15,6 @@ build:
   skip: win or cuda_compiler == "None" or cuda_compiler_version != "12.6"
   script:
     - ./build.sh
-
-# build:
-#   number: 0
-#   string: ${{ processor }}h{{ PKG_HASH }}_{{ build }}
-  #skip: true  # [cuda_compiler_version == "11.8"]
-  #run_exports:
-  #  - ${{ pin_subpackage('ceres-solver', max_pin='x.x') }}
-  #  - ${{ pin_compatible('eigen', max_pin='x.x.x') }}
-  #ignore_run_exports_from:
-  #  - libblas
 
 requirements:
   build:
@@ -48,12 +27,9 @@ requirements:
     - make
   host:
     - glog
-    # cmake find_package(LAPACK) needs blas
-    # even though it's not linked
     - libblas
     - liblapack
     - metis
-    #- suitesparse (disable because GPL: https://github.com/ceres-solver/ceres-solver/issues/1026)
     - eigen
     - libcublas-dev                             # [(cuda_compiler_version or "None").startswith("12")]
     - libcusolver-dev                           # [(cuda_compiler_version or "None").startswith("12")]
@@ -94,37 +70,13 @@ requirements:
     - libnvjitlink
   run:
     - eigen
-    #- ${{ pin_compatible('eigen', max_pin='x.x.x') }}
-    #- __cuda >={{ cuda_compiler_version }}      # [cuda_compiler_version != "None"]
 
-# test:
-#   requires:
-#     - ${{ compiler('cuda') }}
-#     - ${{ compiler('cxx') }}
-#     - ${{ compiler('c') }}
-#     - ${{ stdlib('c') }}
-#     - pkg-config  
-#     - cmake
-#     - make
-#   files:
-#     - tests/
-#   source_files:
-#     - examples/helloworld.cc
-#   commands:
-#     - test -f ${PREFIX}/include/ceres/ceres.h  # [unix]
-#     - test -f ${PREFIX}/lib/libceres${SHLIB_EXT}  # [unix]
-#     - if not exist %PREFIX%\\Library\\include\\ceres\\ceres.h exit 1  # [win]
-#     - if not exist %PREFIX%\\Library\\lib\\ceres.lib exit 1  # [win]
-#     - if not exist %PREFIX%\\Library\\bin\\ceres.dll exit 1  # [win]
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: A large scale non-linear optimization library
+  homepage: http://ceres-solver.org
 
-# about:
-#   home: http://ceres-solver.org
-#   license: BSD-3-Clause
-#   license_file: LICENSE
-#   summary: A large scale non-linear optimization library
-
-# extra:
-#   recipe-maintainers:
-#     - jschueller
-#     - seanyen
-#     - hobu
+extra:
+  recipe-maintainers:
+    - fontan
