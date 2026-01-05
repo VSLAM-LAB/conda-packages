@@ -1,5 +1,5 @@
 context:
-  name: anyfeature
+  name: anyfeature-vslamlab
   version: 1.0
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   - git: https://github.com/alejandrofontan/AnyFeature-VSLAM
-    rev: 6cf7b49edfeee96a4ee83c705020ff15e686ae76
+    rev: 0c3c3770a87c97b9ddfdb5a89a15a6de6ded6d11
 
 build:
   number: 0

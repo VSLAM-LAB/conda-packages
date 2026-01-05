@@ -1,5 +1,5 @@
 context:
-  name: droidslam
+  name: droidslam-vslamlab
   version: 1.0
 
 package:
@@ -7,14 +7,14 @@ package:
   version: ${{ version }}
 
 source:
-  - git: https://github.com/VSLAM-LAB/DROID-SLAM
-    rev: 1fe7023c82173bd31670c8d4468e6d8deb402ee4
+  - git: https://github.com/VSLAM-LAB/DROID-SLAM-VSLAM-LAB
+    rev: 9856bac50fe634e73ad29dc80ab39ca64c1fb46b
 
 build:
   number: 0
   skip: win or cuda_compiler == "None" or cuda_compiler_version != "12.6"
   script:
-    - python -m pip install . --no-deps --no-build-isolation
+   - python -m pip install . --no-deps --no-build-isolation
     
 requirements:
   build:
@@ -30,22 +30,6 @@ requirements:
     - python = 3.11
     - setuptools
     - pip
-    # OpenGL
-    - libgl-devel
-    - libegl-devel
-    - libglvnd-devel
-    - libopengl-devel
-    # X11
-    - xorg-libxext
-    - xorg-libx11
-    - xorg-libxfixes
-    - xorg-libxrender
-    - xorg-libice
-    - xorg-libsm
-    - xorg-libxdmcp
-    - xorg-libxau
-    - xorg-xorgproto
-    - libxkbcommon
     # CUDA Build Tools
     - cuda-version ==${{ cuda_compiler_version }}
     - cuda-cudart-dev
@@ -54,6 +38,7 @@ requirements:
     - cuda-driver-dev
     - cuda-nvcc
     - cuda-nvrtc-dev
+    - cuda-nvtx
     - cuda-nvtx-dev
     - cuda-nvml-dev
     - cuda-profiler-api
@@ -71,6 +56,12 @@ requirements:
     - pytorch-gpu
     - fontan::lietorch
     - pandas
+    - eigen
+    - moderngl
+    - moderngl-window == 3.1.1
+    - torchvision
+    - tensorboard
+    - opencv
   run:
     - python=3.11
     - pytorch-gpu
@@ -85,7 +76,11 @@ requirements:
     - torch-scatter
     - fontan::lietorch
     - pandas
-
+    - eigen
+    - moderngl
+    - moderngl-window == 3.1.1
+    - torchvision
+    - tensorboard
 about:
   license: BSD-3-Clause
   license_file: LICENSE

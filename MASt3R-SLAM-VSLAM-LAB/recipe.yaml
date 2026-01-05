@@ -1,5 +1,5 @@
 context:
-  name: mast3rslam
+  name: mast3rslam-vslamlab
   version: 1.0
 
 package:
@@ -7,8 +7,8 @@ package:
   version: ${{ version }}
 
 source:
-  - git: https://github.com/VSLAM-LAB/MASt3R-SLAM
-    rev: 7cbe1abc6bc10c449f981922d5ed30236a00624e
+  - git: https://github.com/VSLAM-LAB/MASt3R-SLAM-VSLAM-LAB
+    rev: f3b0b2e65eae854e220a7b5f8869a195d7bdc5eb
 
 build:
   number: 0

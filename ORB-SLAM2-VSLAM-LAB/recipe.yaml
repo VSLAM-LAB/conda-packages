@@ -1,5 +1,5 @@
 context:
-  name: orbslam2
+  name: orbslam2-vslamlab
   version: 1.0
 
 package:
@@ -7,8 +7,8 @@ package:
   version: ${{ version }}
 
 source:
-  - git: https://github.com/VSLAM-LAB/ORB_SLAM2
-    rev: 7f747d507ffb04fc277d9ee4e9302fb15b5b43fc
+  - git: https://github.com/VSLAM-LAB/ORB-SLAM2-VSLAM-LAB
+    rev: 053f26faded2f824ff5297a09fa5a03e19c1a4ae
 
 build:
   number: 0
@@ -46,6 +46,7 @@ requirements:
     - yaml-cpp
     - opencv >=4.10.0,<5
     - fontan::pangolin
+
 about:
   license: GPL-3.0-only
   license_file: LICENSE.txt

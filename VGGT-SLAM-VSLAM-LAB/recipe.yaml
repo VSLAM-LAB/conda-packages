@@ -1,5 +1,5 @@
 context:
-  name: dpvo
+  name: vggtslam-vslamlab
   version: 1.0
 
 package:
@@ -7,8 +7,8 @@ package:
   version: ${{ version }}
 
 source:
-  - git: https://github.com/VSLAM-LAB/DPVO
-    rev: ad68ff9f2602904b793e8f331f03c57829f39a44
+  - git: https://github.com/VSLAM-LAB/VGGT-SLAM-VSLAM-LAB
+    rev: db1698e78bc246f15f1fd6581d6a16d2a154b434
 
 build:
   number: 0
@@ -69,28 +69,30 @@ requirements:
     - libcusolver-dev
     - libnvjitlink
 
-    # X11 + OpenGL
-    - libgl-devel
-    - libegl-devel
-    - libglvnd-devel
-    - libopengl-devel
-    - xorg-libxext
-    - xorg-libx11
-    - xorg-libxfixes
-    - xorg-libxrender
-    - xorg-libice
-    - xorg-libsm
-    - xorg-libxdmcp
-    - xorg-libxau
-    - xorg-xorgproto
-    - libxkbcommon
-    - glew
-    - wayland
-
     # Logging / Evaluation
     - tensorboard
     - plyfile
     - evo
+
+    - Pillow
+    - huggingface_hub
+    - safetensors
+    - hydra-core
+    - omegaconf
+    - scipy
+    - onnxruntime
+    - requests
+    - trimesh
+    - matplotlib
+    - gradio
+    - viser
+    - open3d
+    - pytorch-metric-learning
+    - pytorch-lightning
+    - termcolor
+    - virtualenv >=20.10.0
+    - lz4
+    - fontan::gtsam
 
   run:
     - torchvision
@@ -100,19 +102,20 @@ requirements:
     - yacs
     - einops 
     - numba
-    - fontan::pangolin
-    - fontan::pypose
+    - tqdm
+    - viser
+    - termcolor
 
 about:
-  license: MIT
+  license: BSD-2-Clause
   license_file: LICENSE
-  summary: Deep Patch Visual Odometry/SLAM
-  homepage: https://github.com/princeton-vl/DPVO?tab=readme-ov-file
+  summary: VGGT-SLAM
+  homepage: https://github.com/MIT-SPARK/VGGT-SLAM
 
 extra:
   authors:
-    - Lahav Lipson
-    - Zachary Teed
-    - Jia Deng
+    - Dominic Maggio
+    - Hyungtae Lim
+    - Luca Carlone
   recipe-maintainers:
     - fontan

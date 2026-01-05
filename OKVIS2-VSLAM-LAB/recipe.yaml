@@ -1,5 +1,5 @@
 context:
-  name: okvis2
+  name: okvis2-vslamlab
   version: 1.0
 
 package:
@@ -7,8 +7,8 @@ package:
   version: ${{ version }}
 
 source:
-  - git: https://github.com/VSLAM-LAB/okvis2
-    rev: 64cc213876a55aa15858f82c29c346d54bc6a570
+  - git: https://github.com/VSLAM-LAB/okvis2-VSLAM-LAB
+    rev: 58150f446946d5576e76d64836b1f7ab1c627867
 
 build:
   number: 0
@@ -75,6 +75,8 @@ requirements:
     - librealsense
     - openmp
     - libgfortran =3.0.0
+    - yaml-cpp
+    
   run:
     - glog
     - blas
@@ -87,6 +89,7 @@ requirements:
     - librealsense
     - openmp
     - libgfortran =3.0.0
+    - yaml-cpp
 
 about:
   license: BSD-3-Clause

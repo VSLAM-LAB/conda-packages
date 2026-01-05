@@ -1,5 +1,5 @@
 context:
-  name: orbslam3
+  name: orbslam3-vslamlab
   version: 1.0
 
 package:
@@ -7,8 +7,8 @@ package:
   version: ${{ version }}
 
 source:
-  - git: https://github.com/VSLAM-LAB/ORB_SLAM3
-    rev: da3d0ad6ba45d151f4985acca7174122b5cfccf2
+  - git: https://github.com/VSLAM-LAB/ORB_SLAM3_VSLAM_LAB
+    rev: 553dd0896a6f29212d5c832647d56bb7dc6cf820
 
 build:
   number: 0

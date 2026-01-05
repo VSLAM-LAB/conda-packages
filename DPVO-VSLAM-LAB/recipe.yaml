@@ -1,5 +1,5 @@
 context:
-  name: monogs
+  name: dpvo-vslamlab
   version: 1.0
 
 package:
@@ -7,8 +7,8 @@ package:
   version: ${{ version }}
 
 source:
-  - git: https://github.com/VSLAM-LAB/MonoGS
-    rev: 5fe8863c7a1b1f83e5cf555049fccf5cbcb6a135
+  - git: https://github.com/VSLAM-LAB/DPVO-VSLAM-LAB
+    rev: 5a767667bb3ac00025d7279218bb5088fe5c7c9f
 
 build:
   number: 0
@@ -27,16 +27,25 @@ requirements:
 
   host:
     # Python & Build Tools
-    - python = 3.10
+    - python = 3.11
     - setuptools
     - pip
-    
+    - pybind11
+
     # Python core + DL
+    - fontan::pangolin
+    - fontan::pypose
     - pytorch-gpu
-    - torchvision 
+    - torchvision
     - pytorch_scatter
+    - numba
     - numpy
+    - tqdm
+    - einops   
+    - kornia    
     - opencv
+    - yacs
+    - eigen
 
     # CUDA Toolkit Libraries
     - cuda-version = ${{ cuda_compiler_version }}
@@ -60,49 +69,50 @@ requirements:
     - libcusolver-dev
     - libnvjitlink
 
+    # X11 + OpenGL
+    - libgl-devel
+    - libegl-devel
+    - libglvnd-devel
+    - libopengl-devel
+    - xorg-libxext
+    - xorg-libx11
+    - xorg-libxfixes
+    - xorg-libxrender
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libxdmcp
+    - xorg-libxau
+    - xorg-xorgproto
+    - libxkbcommon
+    - glew
+    - wayland
+
     # Logging / Evaluation
+    - tensorboard
     - plyfile
     - evo
-    - munch
-    - trimesh
-    - wandb
-    - torchmetrics
-    - imgviz
-    - pyopengl
-    - glfw
-    - pyglm
-    - lpips
-    - rich
-    - ruff
-    - pyglfw
-    - nbformat = 5.7.0
+
   run:
-    - python = 3.10
-    - pytorch-gpu
-    - torchvision 
-    - wandb
-    - munch
-    - plyfile
-    - opencv
-    - pyglfw
-    - imgviz
-    - pyopengl
-    - pyglm
-    - rich
+    - torchvision
+    - pytorch_scatter 
+    - opencv 
     - evo
-    - torchmetrics
+    - yacs
+    - einops 
+    - numba
+    - fontan::pangolin
+    - fontan::pypose
 
 about:
-  #license: LicenseRef-Imperial-MonoGS
-  #license_file: LICENSE.md
-  summary: Gaussian Splatting SLAM 
-  homepage: https://rmurai.co.uk/projects/GaussianSplattingSLAM/
+  license: MIT
+  license_file: LICENSE
+  summary: Deep Patch Visual Odometry/SLAM
+  homepage: https://github.com/princeton-vl/DPVO?tab=readme-ov-file
 
 extra:
   authors:
-    - Hidenobu Matsuki
-    - Riku Murai
-    - Paul H.J. Kelly 
-    - Andrew J. Davison
+    - Lahav Lipson
+    - Zachary Teed
+    - Jia Deng
   recipe-maintainers:
     - fontan
