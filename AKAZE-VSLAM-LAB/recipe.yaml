@@ -1,0 +1,42 @@
+context:
+  name: akaze-vslamlab
+  version: 1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/alejandrofontan/akaze
+    rev: ed5bf28a824f6d75bd1db5ec906e197fd7e64a18
+
+build:
+  number: 0
+  skip: win 
+  script: build.sh
+    
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - pkg-config  
+    - cmake
+    - make
+    - ninja
+
+  host:
+    - opencv
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: A-KAZE Features
+  description: A-KAZE Features
+  homepage:  https://github.com/pablofdezalc/akaze.git
+
+extra:
+  authors:
+    - Pablo F. Alcantarilla
+  recipe-maintainers:
+    - fontan
