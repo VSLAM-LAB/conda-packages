@@ -1,0 +1,39 @@
+context:
+  name: brisk-vslamlab
+  version: 1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/alejandrofontan/brisk
+    rev: 5b885e710adebe78b46a546b7007a4d58d30cf38
+
+build:
+  number: 0
+  skip: win 
+  script: build.sh
+    
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - pkg-config  
+    - cmake
+    - make
+    - ninja
+
+  host:
+    - opencv
+
+about:
+  summary: BRISK Binary Robust invariant scalable keypoints
+  homepage: https://github.com/ethz-asl/ethzasl_brisk
+
+extra:
+  authors:
+    - S. Leutenegger
+  recipe-maintainers:
+    - fontan
