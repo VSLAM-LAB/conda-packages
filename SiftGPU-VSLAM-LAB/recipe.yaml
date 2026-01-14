@@ -1,0 +1,91 @@
+context:
+  name: siftgpu-vslamlab
+  version: 1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/VSLAM-LAB/SiftGPU-VSLAM-LAB
+    rev: 93f3858c79a0ea5903f9f472b70bae9642fc7e9f
+
+build:
+  number: 0
+  skip: win or cuda_compiler == "None" or cuda_compiler_version != "12.6"
+  script: build.sh
+
+    
+requirements:
+  build:
+    - ${{ compiler('cuda') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - pkg-config  
+    - cmake
+    - make
+    - ninja
+
+  host:
+    - python = 3.11
+    - setuptools
+    - pip
+
+    # CUDA Build Tools
+    - cuda-version ==${{ cuda_compiler_version }}
+    - cuda-cudart-dev
+    - cuda-crt
+    - libcusparse-dev
+    - cuda-driver-dev
+    - cuda-nvcc
+    - cuda-nvrtc-dev
+    - cuda-nvtx
+    - cuda-nvtx-dev
+    - cuda-nvml-dev
+    - cuda-profiler-api
+    - cuda-cudart
+    # CUDA Libraries
+    - cudnn
+    - libcublas-dev
+    - libcudss-dev
+    - libcufile-dev
+    - libcufft-dev
+    - libcurand-dev
+    - libcusolver-dev
+    - cusparselt
+    - libnvjitlink
+    # OpenGL Libraries
+    - libgl-devel
+    - libegl-devel
+    - libglvnd-devel
+    - libopengl-devel
+    # x11 Libraries
+    - xorg-libxext
+    - xorg-libx11
+    - xorg-libxfixes
+    - xorg-libxrender
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libxdmcp
+    - xorg-libxau
+    - xorg-xorgproto
+    - libxkbcommon
+    # Libraries
+    - pytorch-gpu
+    - opencv
+    - glew
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: SiftGPU
+  description: |
+    SIFTGPU is an implementation of SIFT for GPU.
+  homepage: https://github.com/pitzer/SiftGPU
+
+extra:
+  authors:
+    - Ben Pitzer
+  recipe-maintainers:
+    - fontan
